@@ -1,0 +1,10 @@
+ecc -target mips32r2el-linux -g IME_ASSEMBLY_FAJLA -o IME_OUTPUT_FAJLA
+qemu-mipsel -g 1234 IME_OUTPUT_FAJLA&
+gdb-multiarch -q IME_OUTPUT_FAJLA
+target remote :1234
+
+b main
+c
+
+layout src
+layout regs

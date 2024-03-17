@@ -1,0 +1,62 @@
+Legenda:
+$ - registar
+N - broj (konstanta)
+L - label
+T - text (ime necega i slicno)
+S - string (tekst pod navodnicima)
+
+Aritmeticko-logicke instrukcije:
+sub $, $, $     - oduzimanje
+add $, $, $     - sabiranje sa provjerom overflow-a
+addu $, $, $    - sabiranje bez provjere overflow-a
+addi $, $, N    - sabiranje registra i konstante sa provjerom overflow-a
+addiu $, $, N   - sabiranje registra i konstante bez provjere overflow-a
+sll $, $, N     - shift left (logical), pomijeranje svih bita u lijevo za N mijesta
+srl $, $, N     - shift right (logical), pomijeranje svih bita u desno za N mijesta
+sra $, $, N     - shift right (arithmetic), pomijeranje svih bita u desno za N mijesta, pri cemu se prazna mjesta popunjavaju zavisno od predznaka
+and $, $, $     - operacija i na bitima registara
+andi $, $, N    - operacija i na bitima registra i konstante
+or $, $, $      - operacija ili na bitima registara
+ori $, $, N     - operacija ili na bitima registra i konstante
+xor $, $, $     - operacija iskljucivo ili na bitima registara           
+xori $, $,      - operacija iskljucivo ili na bitima registra i konstante
+nor $, $, $     - operacija nili na bitima registara
+slt $, $, $     - set less than, poredjenje "manje" izmedju dva registra
+slti $, $, N    - set less than, poredjenje "manje" izmedju registra i konstante
+sltu $, $, $    - set less than, poredjenje "manje" izmedju dva registra, pri cemu se ne gleda bit predznaka
+sltiu $, $, N   - set less than, poredjenje "manje" izmedju registra i konstante, pri cemu se ne gleda bit predznaka
+
+Instrukcije grananja:
+beq $, $, L   - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
+bne $, $, L   - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
+j L           - jump (bezuslovni skok), nastavi izvrsavati od L
+jr $          - jump register, nastavi izvrsavati od adrese pohranjene u registru
+
+Load/Store instrukcije:
+lb $, N($)  - ucitavanje bajta iz RAM-a u registar
+lh $, N($)  - ucitavanje dva bajta (half-word) iz RAM-a u registar
+lw $, N($)  - ucitavanje cetiri bajta (word) iz RAM-a u registar
+sb $, N($)  - spremanje bajta iz registra u RAM
+sh $, N($)  - spremanje dva bajta (half-word) iz registra u RAM
+sw $, N($)  - spremanje cetiri bajta (word) iz registra u RAM
+lbu $, N($) - ucitavanje bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+lhu $, N($) - ucitavanje dva bajta (half-word) iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+sb $, N($)  - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+sh $, N($)  - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+la $, L     - ucitavanje adrese label-a u registar
+li $, N     - ucitavanje broje N u registar
+
+Direktive:
+.section T  - deklaracija sekcije T
+  ELF sekcije:
+  .text     - sekcija za instrukcije
+  .data     - sekcija za inicijalizirane globalne varijable
+  .bss      - sekcija za neinicijalizirane globalne varijable (block starting symbol)
+  .rodata   - sekcija za konstante (read-only data)
+.globl L    - deklaracija simbola L globalnim (moze se koristiti u drugim fajlovima)
+.global L   - isto sto i .globl
+.byte N     - rezervisanje jednom bajta memorije sa vrijednosti N
+.half N     - rezervisanje dva bajta memorije sa vrijednosti N
+.word N     - rezervisanje cetiri bajta memorije sa vrijednosti N
+.ascii S    - pohrani string S u memoriju bez null karaktera
+.asciiz S   - pohrani string S u memoriju sa null karakterom

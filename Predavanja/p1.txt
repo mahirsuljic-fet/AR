@@ -1,0 +1,13 @@
+Knjiga u biblioteci ("MIPS procesor iz perspektive GNU asemblera."), napisana specificno za nas, za ovaj predmet.
+Ima jos jedna knjiga "Computer Organization and Design: The Hardware/Software Interface" (vrh vrhove).
+
+Govorit cemo o 32-bit arhitekturi (MIPS). Fokusiramo se na procesor-memorija, a ne na procesor-IO, to cemo u OS.
+RISC - ARM, MIPS, ...
+CISC - Intel, ...
+
+Programi se nalaze na tacno odredjenoj lokaciji u memoriji i prva instrukcija se nalazi na unaprijed odrednjenoj fiksnoj lokaciji.
+Load-Store arhitektura vrijedi samo za RISC. Registri su puno brzi od RAM-a jer koriste flip-flop-ove a RAM kondenzatore.
+
+gu gu ga ga
+
+Prevod iz npr. C u assembler nije jednoznacan.

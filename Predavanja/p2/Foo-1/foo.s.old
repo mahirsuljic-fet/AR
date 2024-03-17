@@ -1,0 +1,9 @@
+.section .data
+
+.global bar
+bar:
+.word 5
+
+.globl foo
+foo:
+.byte 97

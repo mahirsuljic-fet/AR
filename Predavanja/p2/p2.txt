@@ -1,0 +1,27 @@
+shell - okruzenje za pokretanje programa
+Loader se aktivira pri pokretanju programa.
+Entry point je lokacija gdje se nalazi prva instrukcija programa.
+
+readelf -h "filename"
+kompajler -> asembler -> linker
+razjasnjeni simbol (resolved symbol) *bitno*
+
+Nakon direktive .global mozemo koristiti samo raznasnjene simbole. Pomocu nje "eksportujemo" simbol i u drugoj datoteci nije razjasnjen.
+
+text (instrukcije)
+data (vrijednosti inicijaliziranih globalnih varijabli)
+bss (block starting symbol; neinicijalizirane globalne varijable)
+rodata (read-only data; konstante)
+
+Postoji .ascii (bez null na kraju stringa) i .asciiz (sa null na kraju stringa).
+
+Postoji i meta sekcija koja sadrzi metadata o ostalim sekcijama.
+linker script - recept za uvezivanje
+
+U krajnjem programu ne smije biti neraznjasnjen simbol (npr. generiranje programa bez main nije dozvoljeno).
+Registri kao operandi pocinju sa $.
+
+pc - program counter
+
+Registar 0 je UVIJEK 0 (cak i ako zapisemo nesto u njega, i dalje ce biti nula, tj. ne mozemo je mijenjati).
+Umjesto move mozemo sabrat registar sa $0.

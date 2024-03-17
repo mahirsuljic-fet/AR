@@ -1,0 +1,41 @@
+addi $s0,$s1,5
+
+Imamo 32 registra, svaki ima redni broj, pa nam treba 5 bita po registru.
+To znaci da $s0 zauzima 5 bita, $s1 zauzima 5 bita, pa taj dio instrukcije zauzima 10 bita.
+Jedan dio uzima sama instrukcija (addi).
+16 bit ostaje za broj (moze od 0 do 65535 bez predznaka ili od -32768 do 32767 sa predznakom).
+
+Aritmetika sa detekcijom prekoracenja - generise se hardverska iznimka (o njima cemo pricat tek u operativnim sistemima), 
+                                        ne dobijamo rezultat, procesor prestaje izvrsavat nas program i pozicionira programski brojac 
+                                        na mjesto gdje se tretira hardverska iznimka (reaguje operativni sistem)
+Aritmetika bez detekcije prekoracenja - odbacuje se bit koji je "viska"
+
+c kompajler nikad nece koristit instrukcije sa detekcijom prekoracenja, jer prema standardu ne smije se program prestati izvrsavati zbog prekoracenja.
+
+store - iz CPU u RAM
+load  - iz RAM u CPU
+
+Mozemo koristiti byte (1B), half-word (2B) i word (4B)
+lb (load byte), lh (load half-word), lw (load word)
+sb (store byte), sh (store half-word), sw (store word)
+
+Za byte instrukcije mozemo koristiti bilo koju memorijsku adresu.
+Za half-word instrukcije mozemo koristiti memorijske adrese djeljive sa 2.
+Za word instrukcije mozemo koristiti memorijske adrese djeljive sa 4.
+Ako se ovo ne ispostuje desi se iznimka.
+
+Za numericku konstantu u load/store instrukcijama imamo 16 bita.
+Za lb i sb koristi se najniznih 8 bita (byte), a ostatak se popunjaje sa nulama ili jedinicama, zavisno od toga da li je broj na toj lokaciji pozitivan ili negativan. Koristenjem lbu i lhu instrukcija ostatak bita se popunjaje nulama (bez obzira kakav je podatak).
+
+Sva objasnjenja branch-ovanja su bazirana na pretpostavci da je postavljeno .set reorder ili da nema .set noreorder.
+Ako ima .set noreorder izvrsit ce se jedna instrukcija posle beq (i slicno) pa tek onda od navedenog label-a.
+
+Instrukcija la (load address) sluzi za ucitavanje adrese gdje se nalazi neki simbol.
+
+srl - uvijek lijevi biti budu nule
+sra - uzima u obzir predznak pri shiftanju (0 za pozitivne brojeve, a 1 za negativne)
+
+slt - set less than
+slt $reg1,$reg2,$reg3 <=> $reg1 = $reg2 < $reg3
+
+slt i slti koriste predznak (npr. kao int) dok sltu i sltiu ne koriste predznak (npr. kao unsigned int).

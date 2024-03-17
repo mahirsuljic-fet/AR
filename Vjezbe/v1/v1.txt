@@ -1,0 +1,6 @@
+qemu-mipsel -g 1234 p1&
+-g znaci da pokrene gdb server u pozadini koji pocne slusat klijenta na portu 1234
+p1 nam treba da procita jednu sekciju neku posebnu
+& pokreni u backgroundu
+
+
