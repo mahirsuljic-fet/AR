@@ -6,14 +6,21 @@ T - text (ime necega i slicno)
 S - string (tekst pod navodnicima)
 
 Aritmeticko-logicke instrukcije:
-sub $, $, $     - oduzimanje
+sub $, $, $     - oduzimanje sa provjerom overflow-a
+subu $, $, $    - oduzimanje bez provjere overflow-a
 add $, $, $     - sabiranje sa provjerom overflow-a
 addu $, $, $    - sabiranje bez provjere overflow-a
 addi $, $, N    - sabiranje registra i konstante sa provjerom overflow-a
 addiu $, $, N   - sabiranje registra i konstante bez provjere overflow-a
+mult $, $       - mnozenje sa provjerom overflow-a (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
+multu $, $      - mnozenje bez provjere overflow-a (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
+div $, $        - dijeljenje sa provjerom overflow-a (rezultat se smijesta u registar LO, a ostatak u registar HI)
+divu $, $       - dijeljenje bez provjere overflow-a (rezultat se smijesta u registar LO, a ostatak u registar HI)
+
 sll $, $, N     - shift left (logical), pomijeranje svih bita u lijevo za N mijesta
 srl $, $, N     - shift right (logical), pomijeranje svih bita u desno za N mijesta
 sra $, $, N     - shift right (arithmetic), pomijeranje svih bita u desno za N mijesta, pri cemu se prazna mjesta popunjavaju zavisno od predznaka
+
 and $, $, $     - operacija i na bitima registara
 andi $, $, N    - operacija i na bitima registra i konstante
 or $, $, $      - operacija ili na bitima registara
@@ -32,19 +39,22 @@ bne $, $, L   - branch not equal (to), ako vrijednosti u registrima nisu iste na
 j L           - jump (bezuslovni skok), nastavi izvrsavati od L
 jr $          - jump register, nastavi izvrsavati od adrese pohranjene u registru
 
-Load/Store instrukcije:
-lb $, N($)  - ucitavanje bajta iz RAM-a u registar
-lh $, N($)  - ucitavanje dva bajta (half-word) iz RAM-a u registar
-lw $, N($)  - ucitavanje cetiri bajta (word) iz RAM-a u registar
-sb $, N($)  - spremanje bajta iz registra u RAM
-sh $, N($)  - spremanje dva bajta (half-word) iz registra u RAM
-sw $, N($)  - spremanje cetiri bajta (word) iz registra u RAM
-lbu $, N($) - ucitavanje bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
-lhu $, N($) - ucitavanje dva bajta (half-word) iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
-sb $, N($)  - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-sh $, N($)  - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-la $, L     - ucitavanje adrese label-a u registar
-li $, N     - ucitavanje broja N u registar
+Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
+lb $, N($)    - ucitavanje bajta iz RAM-a u registar
+lh $, N($)    - ucitavanje dva bajta (half-word) iz RAM-a u registar
+lw $, N($)    - ucitavanje cetiri bajta (word) iz RAM-a u registar
+lbu $, N($)   - ucitavanje bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+lhu $, N($)   - ucitavanje dva bajta (half-word) iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+la $, L       - ucitavanje adrese label-a u registar
+li $, N       - ucitavanje broja N u registar
+lui $, N      - ucitavanje broja N u prvih 16 bita registra
+sb $, N($)    - spremanje bajta iz registra u RAM
+sh $, N($)    - spremanje dva bajta (half-word) iz registra u RAM
+sw $, N($)    - spremanje cetiri bajta (word) iz registra u RAM
+sbu $, N($)   - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+shu $, N($)   - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+mfhi $        - pomijeranje vrijednosti iz HI registra u registar opste namjene
+mflo $        - pomijeranje vrijednosti iz LO registra u registar opste namjene
 
 Direktive:
 .section T  - deklaracija sekcije T
