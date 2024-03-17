@@ -44,7 +44,7 @@ lhu $, N($) - ucitavanje dva bajta (half-word) iz RAM-a u registar, ostatak regi
 sb $, N($)  - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
 sh $, N($)  - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
 la $, L     - ucitavanje adrese label-a u registar
-li $, N     - ucitavanje broje N u registar
+li $, N     - ucitavanje broja N u registar
 
 Direktive:
 .section T  - deklaracija sekcije T
