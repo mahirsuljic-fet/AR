@@ -1,0 +1,25 @@
+{
+  int a = 5;
+  int b = 4;
+}
+
+// int a = 5;
+addiu $sp, $sp, -4
+addiu $t0, $0, 5
+lw $t0, 0($sp)
+
+// int b = 4;
+addiu $sp, $sp, -4
+addiu $t0, $0, 4
+lw $t0, 0($sp)
+
+addiu $sp, $sp, 8   # oslobodjenje memorije
+
+ILI BOLJE:
+
+addiu $sp, $sp, -8
+addiu $t0, $0, 5
+lw $t0, 4($sp)
+addiu $t0, $0, 4
+lw $t0, 0($sp)
+addiu $sp, $sp, 8   # oslobodjenje memorije

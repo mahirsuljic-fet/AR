@@ -1,0 +1,20 @@
+Za odredjivanja gdje pocinje stack je nadlezan operativni sistem.
+Programski brojac ($pc) se uvijek nalazi unutar code sekcije.
+
+$sp - stack pointer, pointer na trenutno dno stack-a (najnizu adresu stack-a)
+$ra - return address, pointer na mjesto odakle se tok programa treba nastaviti nakon izvrsenja neke funkcije
+
+jal (jump and link) radi isto kao i j (jump) instrukcija, s tim da spremi adresu, od koje se treba nastavit 
+izvrsavat program nakon poziva funkcije, u registar $ra.
+
+caller - onaj koji poziva funkciju
+callee - onaj koji biva pozvan
+
+prezervirani (saved) registri  - registri za koje je callee odgovaran da ostanu isti prije i poslje poziva date funkcije
+neprezervirani (temp) registri - registri cije vrijednosti nisu zagarantovane da budu iste prije i posle poziva funkcije
+
+Dogovor je da prezervirani registri budu isti prije i posle poziva neke funkcije.
+
+$fp - frame pointer, pointer na pocetak trenutnog stack frame-a
+
+Preferira se da frame pointer pocinje od snimljene povratne adrese ($ra), a ne od argumenata (kao na prezentaciji).

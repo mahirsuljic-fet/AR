@@ -38,6 +38,7 @@ beq $, $, L   - branch equal (to), ako su vrijednosti u registrima iste nastavi 
 bne $, $, L   - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
 j L           - jump (bezuslovni skok), nastavi izvrsavati od L
 jr $          - jump register, nastavi izvrsavati od adrese pohranjene u registru
+jal L         - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
 
 Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
 lb $, N($)    - ucitavanje bajta iz RAM-a u registar

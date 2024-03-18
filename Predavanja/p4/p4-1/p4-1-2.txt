@@ -1,0 +1,19 @@
+{
+  int a;
+  int b;
+}
+
+addiu $sp, $sp, -8
+addiu $sp, $sp, 8   
+
+#----------------#
+
+{
+  int a = 0;
+  int b = 0;
+}
+
+addiu $sp, $sp, -8
+lw $0, 4($sp)
+lw $0, 0($sp)
+addiu $sp, $sp, 8
