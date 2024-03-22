@@ -34,6 +34,7 @@ z: .word
 
 .globl main
 main:
+  la $t0, f
   la $t0, a
   lbu $t0, ($t0)
   addiu $t1, $t0, 190

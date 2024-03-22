@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 static int bar = 5; // nema .globl
-char foo;           // rodata
+char foo;           // bss
 
 int main()
 {
