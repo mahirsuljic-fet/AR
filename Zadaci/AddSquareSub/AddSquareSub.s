@@ -10,6 +10,7 @@ square:
   multu $a0, $a0        # $a0 * $a0, odnosno x*x
   mflo $v0              # smijestanje najniza 32 bita rezultata x*x u $v0
   jr $ra                # return
+  nop
 
 .globl foo
 foo:
