@@ -1,0 +1,46 @@
+Ako funkcija ima tri operanda i sva tri su registri to su R instrukcije, s iznimkom shift instrukcija koje su R iako imaju konstantu kao treci argument.
+Ako funkcija koristi brojcane konstante onda je I tipa.
+Ako funkcija koristi label tada je J tipa.
+
+ima broj                  -> I
+ima label (i nije branch) -> J
+nije I ili J              -> R
+
+I format : op(6b)  rs(5b)  rt(5b)  address/const(16b)
+J format : op(6b)  address(26b)
+R format : op(6b)  rs(5b)  rt(5b)  rd(5b)  shamt(5b)  func(6b)
+
+op - opcode, kod za vrstu instrukcije (0 za R format)
+rs - source register
+rt - target register (destinacijski u I formatu)
+rd - destination register
+shamt   - shift amount (0 za instrukcije koje nisu shift)
+func    - instrukcija (svaka ima svoj kod)
+address - adresa, lokacija u memoriji
+const   - brojcana konstanta
+
+Za registre je rezervisano 5 bita jer MIPS ima 32 (2^5) registra. U taj dio se smijesta redni broj registra.
+Za shamt je rezervisano 5 bita jer je velicina MIPS registra 32 (2^5) bita, pa nema smisla shiftati vise od 32 mjesta.
+Adrese u I formatu su relativni skokovi (npr. 1, 4, -2, -3, 6, ...) dok su adrese u J formatu globalni skokovi (npr. 0x0040001c).
+Kod I instrukcija rt se ponasa kao destinacijski registar, rezultat instrukcije se smijesta u rt.
+Redoslijed registara u binarnom zapisu instrukcije (I i R format) nije isti kao pri pisanju asemblera 
+(u asembleru destinacijski registar ide prvi, a u binarnom zapisu ide zadnji).
+
+relativni skok - pomijeranje programskog brojaca ($pc) nekoliko instrukcija (beq, bne, ...)
+globalni skok  - pomijeranje programskog brojaca ($pc) na neku apsolutnu adresu (jr)
+
+Skok se broji od jedne instrukcije posle instrukcije branchiranja.
+
+Skok instrukcija ne moze da bude sama jer se ona izvrsava zajedno sa jednom instrukcijom posle nje.
+
+.set noreorder - vidimo odgodjeni slot
+.set reorder   - ne vidimo odgodjeni slot
+
+U J instrukcijama se adresa zapisuje kao adresa podijeljena sa 4 (shiftana u desno 2 puta).
+Adrese moraju biti poravnate na 4 bajta pa su zadnja dva bajta uvijek 00, te nam nisu bitni, ne gubimo nikakve informacije.
+U J instrukcijama imamo 26 bita za adresu, ali buduci da znamo da su zadnja dva bita nule, to nam omogucaje da zapisemo 28 bita adrese.
+(npr. 8-bitna adresa 11010100 se moze zapisati u 6 bita kao 110101 pri cemu se podrazumijeva da su zadnja dva bita nule)
+Pri izvrsenju J instrukcije prva 4 bita $pc se zadrzavaju.
+
+32-bitna sabirnica znaci da nam je na raspolaganju 2^32 adresa. J instrukcije imaju dovoljno prostora samo za 28 bita, tj. imamo pristup 2^28 adresa.
+Ukupan adresni prostor (2^32 adresa) se dijeli na 16 dijelova (segmenata) po 2^28 adresa i J instrukcije vrse skokove unutar jednog datog segmenta.
