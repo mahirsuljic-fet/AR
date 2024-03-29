@@ -4,7 +4,7 @@
 // Koju ce decimalnu vrijednost imati varijabla res nakon izvrsenja koda?
 //
 // Odgovor:
-// res = -34
+// res = -34  (res = 0xDE)
 
 const uint16_t num = 0xC0DE;
 int8_t res;

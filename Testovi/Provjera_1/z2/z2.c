@@ -1,6 +1,11 @@
 // Prevesti dati kod u assembler
 // (zadatak nije bio u main-u, samo ovih 8 linija koda unutar main-a,
 // ali sam ubacio u main da bi se mogao pokrenuti)
+//
+// Koju ce vrijednost imati t1 nakon izvrsenja koda?
+//
+// Odgovor:
+// t1 = 0xDEADD00D = 3735932941
 
 int main()
 {
