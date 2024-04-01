@@ -12,8 +12,8 @@ mov.s $f0, $f13 # iz $f13 korpiraj u f0
 
 cvt.X.Y $fd, $fs
 
-X moze biti w s d (npr. cvt.w.Y ...)
-Y moze biti w s d (npr. cvt.X.w ...)
+X moze biti w, s, d
+Y moze biti w, s, d
 
 li $t0, 4         # ucitaj 4 u $t0
 mtc1 $f0, $t0     # premjesti 4 iz $t0 u $f0

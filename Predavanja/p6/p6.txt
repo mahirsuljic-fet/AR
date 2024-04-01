@@ -1,8 +1,67 @@
 Da bi se mogli koristiti floating point brojevi procesoru je dodat koprocesor.
 
-Instrukcije za rad sa single precision floating point brojevima koriste sufiks .s, a za double precision koriste sufiks .d.
+Koprocesor ima 32 32-bitna registra koji se oznacavaju sa $f0, $f1, ..., $f31.
+Sve operacije nad realnim brojevima se izvrsaju iskljucivo na registrima koprocesora (fp (floating point) registri).
+Instrukcije za rad sa single precision floating point brojevima koriste sufiks .s, a za double precision koriste sufiks .d (npr. add.s, sub.d, ...).
 
-Za double instrukcije moramo koristiti registre sa parnim indeksima.
+gp registri - general purpose registers, registri opste namjene ($t0, $t1, $s0, ...) 
+fp registri - floating point registers, registri za rad sa floating point brojevima ($f0, $f1, ..., $f31) 
 
-Ako su parametri funkcije floating point argumenti su i $f12 i $f14, ako je jedan cjelobrojni onda je on u $a2.
+Raspored fp registara ($f0 podrazumijeva $f1, $f2 podrazumijeva $f3, itd.):
+  povratne vrijednosti:   $f0, $f2                * buduci da po c standardu vracamo samo jednu vrijednost koristimo $f0
+  prezervirani registri:  $f20 - $f30
+  privremeni registri:    $f4 - $f10, $f16, $f18
+  argumenti funkcija:     $f12, $f14              * samo ako je prvi parametar funkcije float i ima do dva float parametra
+
+Za double (.d) instrukcije moramo koristiti registre sa parnim indeksima.
+
+Za pristup memoriji koriste se slicne instrukcije kao i lw i sw, a to su lwc1 i swc1 gdje c1 oznacava coprocessor 1 (da zelimo koristiti koprocesor).
+Destinacija je neki fp registar, a izvor (adresni) je neki od gp registara. Sintaksa je ista.
+
+mtc1 (move to coprocessor 1) se koristi za kopiranje vrijednosti iz gp registara ($t0, ...) u fp registre ($f0, ...)
+mfc1 (move from coprocessor 1) se koristi za kopiranje vrijednosti iz fp registara ($f0, ...) u gp registre ($t0, ...)
+
+Koristenjem ovih instrukcija se NE VRSI KONVERZIJA, nego se bukvalno prekopiraju biti iz jednog registra u drugi.
+
+Npr. ako je u $t0 bila vrijednost 10, to je 0x0000000A, koristenjem mtc1 (iz $t0 u $f0) u $f0 ce biti 0x0000000A, sto nije 10 u IEEE (nego 1.4e-44).
+Sintaksa ovih instrukcija je ista, prvi argument je generalni (gp) registar a drugi je koprocesorski (fp) registar, npr:
+mtc1 $t0, $f0   - kopiraj vrijednost iz $t0 u $f0
+mfc1 $t0, $f0   - kopiraj vrijednost iz $f0 u $t0
+
+Za kopiranje vrijednosti izmedju fp registara koristimo instrukcije mov.s (za single precision (32-bit)) i mov.d (za double precision (64-bit)).
+
+Za kopiranje vrijednosti iz generalnih registara u fp registre SA KONVERZIJOM koristi se instrukcija cvt (convert), koja ima sljedecu sintaksu:
+cvt.x.y $ $
+gdje je: 
+  x destinacijski tip podatka
+  y je izvorni tip podatka
+  prvi registar je destinacijski
+  drugi registar je izvorni
+Tip podatka moze biti: 
+  w (cijeli broj - int)
+  s (single precision floating point - float)
+  d (double precision floating point - double)
+Primjer koristenja instrukcije cvt:
+cvt.s.w $f0, $f0  - pretvori vrijednost iz $f0 iz cijelog broja u single precision floating number (int -> float)
+cvt.w.s $f0, $f1  - pretvori vrijednost iz $f1 iz single precision floating number u cijeli broj i rezultat spremi u $f0 (float -> int)
+
+Za uporedjivanje vrijednosti koristi se funkcija c (compare) koja ima sljedecu sintaksu:
+c.vrsta_poredjenja.tip_podataka $ $
+gdje je:
+  tip_podataka koji se porede (d - double ili s - single (float) (slicno kao i kod cvt))
+  vrsta_poredjenja nacin na koji zelimo uporediti date vrijednosti i zapisuje se u vidu engleskih skracenica:
+    eq - (==) EQual
+    le - (<=) Less than or Equal
+    lt - (<)  Less Than 
+Primjer koristenja instrukcije c:
+c.eq.s $f4, $f5   - $f4 == $f5
+c.le.s $f4, $f5   - $f4 <= $f5
+c.lt.s $f4, $f5   - $f4 < $f5
+
+Rezultat uporedjivanja se smijesta kao stanje bita CC u FP statusno/kontrolnom registru FCSP.
+Grananje se izvrsava sa instrukcijama bc1t (branch coprocessor 1 true) i bc1f (branch coprocessor 1 false).
+bc1t LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog uporedjivanja true (tacno), tj. ako je stanje bita CC jedinica
+bc1f LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog uporedjivanja false (netacno), tj. ako je stanje bita CC nula
+
+Ako su parametri funkcije floating point argumenti su u $f12 i $f14, ako je jedan cjelobrojni onda je on u $a2.
 Ako vracamo int vrijednost se sprema u $v0, ako vracamo floating point vrijednost ona je u $f0.
