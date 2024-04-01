@@ -38,7 +38,7 @@ gdje je:
   prvi registar je destinacijski
   drugi registar je izvorni
 Tip podatka moze biti: 
-  w (cijeli broj - int)
+  w (word, cijeli broj - int)
   s (single precision floating point - float)
   d (double precision floating point - double)
 Primjer koristenja instrukcije cvt:
@@ -48,7 +48,8 @@ cvt.w.s $f0, $f1  - pretvori vrijednost iz $f1 iz single precision floating numb
 Za uporedjivanje vrijednosti koristi se funkcija c (compare) koja ima sljedecu sintaksu:
 c.vrsta_poredjenja.tip_podataka $ $
 gdje je:
-  tip_podataka koji se porede (d - double ili s - single (float) (slicno kao i kod cvt))
+  tip_podataka koji se porede (d - double ili s - single (float))
+                              (ako koristimo double onda se dva registra posmatraju kao jedan broj, npr. $f0 i $f1 se posmatra kao jedna cjelina)
   vrsta_poredjenja nacin na koji zelimo uporediti date vrijednosti i zapisuje se u vidu engleskih skracenica:
     eq - (==) EQual
     le - (<=) Less than or Equal
@@ -58,10 +59,10 @@ c.eq.s $f4, $f5   - $f4 == $f5
 c.le.s $f4, $f5   - $f4 <= $f5
 c.lt.s $f4, $f5   - $f4 < $f5
 
-Rezultat uporedjivanja se smijesta kao stanje bita CC u FP statusno/kontrolnom registru FCSP.
+Rezultat poredjenja se smijesta kao stanje bita CC u FP statusno/kontrolnom registru FCSP.
 Grananje se izvrsava sa instrukcijama bc1t (branch coprocessor 1 true) i bc1f (branch coprocessor 1 false).
-bc1t LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog uporedjivanja true (tacno), tj. ako je stanje bita CC jedinica
-bc1f LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog uporedjivanja false (netacno), tj. ako je stanje bita CC nula
+bc1t LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog poredjenja true (tacno), tj. ako je stanje bita CC jedinica
+bc1f LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog poredjenja false (netacno), tj. ako je stanje bita CC nula
 
 Ako su parametri funkcije floating point argumenti su u $f12 i $f14, ako je jedan cjelobrojni onda je on u $a2.
 Ako vracamo int vrijednost se sprema u $v0, ako vracamo floating point vrijednost ona je u $f0.
