@@ -1,0 +1,8 @@
+Da bi se mogli koristiti floating point brojevi procesoru je dodat koprocesor.
+
+Instrukcije za rad sa single precision floating point brojevima koriste sufiks .s, a za double precision koriste sufiks .d.
+
+Za double instrukcije moramo koristiti registre sa parnim indeksima.
+
+Ako su parametri funkcije floating point argumenti su i $f12 i $f14, ako je jedan cjelobrojni onda je on u $a2.
+Ako vracamo int vrijednost se sprema u $v0, ako vracamo floating point vrijednost ona je u $f0.

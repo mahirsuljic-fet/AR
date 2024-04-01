@@ -54,8 +54,9 @@ sh $, N($)    - spremanje dva bajta (half-word) iz registra u RAM
 sw $, N($)    - spremanje cetiri bajta (word) iz registra u RAM
 sbu $, N($)   - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
 shu $, N($)   - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-mfhi $        - pomijeranje vrijednosti iz HI registra u registar opste namjene
-mflo $        - pomijeranje vrijednosti iz LO registra u registar opste namjene
+mfhi $        - pomijeranje vrijednosti iz HI registra u registar opste namjene (move from HI)
+mflo $        - pomijeranje vrijednosti iz LO registra u registar opste namjene (move from LO)
+move $, $     - pseudo instrukcija, premijesta vrijednost drugog registra u prvi
 
 Direktive:
 .section T  - deklaracija sekcije T
