@@ -4,71 +4,110 @@ N - broj (konstanta)
 L - label
 T - text (ime necega i slicno)
 S - string (tekst pod navodnicima)
+$gp - gp registar (registar opste namjene; $t0, $s1, ...)
+$fp - fp registar (floating point registar; $f0, $f1, ...)
+
+Format objasnjenja:
+instrukcija parametri   - puni naziv instrukcije, objasnjenje
+
 
 Aritmeticko-logicke instrukcije:
-sub $, $, $     - oduzimanje sa provjerom overflow-a
-subu $, $, $    - oduzimanje bez provjere overflow-a
-add $, $, $     - sabiranje sa provjerom overflow-a
-addu $, $, $    - sabiranje bez provjere overflow-a
-addi $, $, N    - sabiranje registra i konstante sa provjerom overflow-a
-addiu $, $, N   - sabiranje registra i konstante bez provjere overflow-a
-mult $, $       - mnozenje sa provjerom overflow-a (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
-multu $, $      - mnozenje bez provjere overflow-a (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
-div $, $        - dijeljenje sa provjerom overflow-a (rezultat se smijesta u registar LO, a ostatak u registar HI)
-divu $, $       - dijeljenje bez provjere overflow-a (rezultat se smijesta u registar LO, a ostatak u registar HI)
+sub $, $, $       - subtract, oduzimanje sa provjerom overflow-a
+subu $, $, $      - subrtact unsigned, oduzimanje bez provjere overflow-a
+add $, $, $       - add, sabiranje sa provjerom overflow-a
+addu $, $, $      - add unsigned, sabiranje bez provjere overflow-a
+addi $, $, N      - add immediate, sabiranje registra i konstante sa provjerom overflow-a
+addiu $, $, N     - add immediate unsigned, sabiranje registra i konstante bez provjere overflow-a
+mult $, $         - multiply, mnozenje sa predznakom (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
+multu $, $        - multiply unsigned, mnozenje bez predznaka (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
+div $, $          - divide, dijeljenje sa predznakom (rezultat se smijesta u registar LO, a ostatak u registar HI)
+divu $, $         - divide unsigned, dijeljenje bez predznaka (rezultat se smijesta u registar LO, a ostatak u registar HI)
 
-sll $, $, N     - shift left (logical), pomijeranje svih bita u lijevo za N mijesta
-srl $, $, N     - shift right (logical), pomijeranje svih bita u desno za N mijesta
-sra $, $, N     - shift right (arithmetic), pomijeranje svih bita u desno za N mijesta, pri cemu se prazna mjesta popunjavaju zavisno od predznaka
+sll $, $, N       - shift left (logical), pomijeranje svih bita u lijevo za N mijesta
+srl $, $, N       - shift right (logical), pomijeranje svih bita u desno za N mijesta
+sra $, $, N       - shift right (arithmetic), pomijeranje svih bita u desno za N mijesta, pri cemu se prazna mjesta popunjavaju zavisno od predznaka
 
-and $, $, $     - operacija i na bitima registara
-andi $, $, N    - operacija i na bitima registra i konstante
-or $, $, $      - operacija ili na bitima registara
-ori $, $, N     - operacija ili na bitima registra i konstante
-xor $, $, $     - operacija iskljucivo ili na bitima registara           
-xori $, $,      - operacija iskljucivo ili na bitima registra i konstante
-nor $, $, $     - operacija nili na bitima registara
-slt $, $, $     - set less than, poredjenje "manje" izmedju dva registra
-slti $, $, N    - set less than, poredjenje "manje" izmedju registra i konstante
-sltu $, $, $    - set less than, poredjenje "manje" izmedju dva registra, pri cemu se ne gleda bit predznaka
-sltiu $, $, N   - set less than, poredjenje "manje" izmedju registra i konstante, pri cemu se ne gleda bit predznaka
+and $, $, $       - and, operacija i na bitima registara
+andi $, $, N      - and immediate, operacija i na bitima registra i konstante
+or $, $, $        - or, operacija ili na bitima registara
+ori $, $, N       - or immediate, operacija ili na bitima registra i konstante
+xor $, $, $       - exclusive or, operacija iskljucivo ili na bitima registara           
+xori $, $,        - exclusive or immediate, operacija iskljucivo ili na bitima registra i konstante
+nor $, $, $       - not or, operacija nili (negirano ili) na bitima registara
+slt $, $, $       - set less than, poredjenje "manje" izmedju dva registra
+slti $, $, N      - set less than immediate, poredjenje "manje" izmedju registra i konstante
+sltu $, $, $      - set less than unsigned, poredjenje "manje" izmedju dva registra, pri cemu se ne gleda bit predznaka
+sltiu $, $, N     - set less than immediate unsigned, poredjenje "manje" izmedju registra i konstante, pri cemu se ne gleda bit predznaka
+
 
 Instrukcije grananja:
-beq $, $, L   - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
-bne $, $, L   - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
-j L           - jump (bezuslovni skok), nastavi izvrsavati od L
-jr $          - jump register, nastavi izvrsavati od adrese pohranjene u registru
-jal L         - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
+beq $, $, L       - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
+bne $, $, L       - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
+j L               - jump (bezuslovni skok), nastavi izvrsavati od L
+jr $              - jump register, nastavi izvrsavati od adrese pohranjene u registru
+jal L             - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
+
 
 Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
-lb $, N($)    - ucitavanje bajta iz RAM-a u registar
-lh $, N($)    - ucitavanje dva bajta (half-word) iz RAM-a u registar
-lw $, N($)    - ucitavanje cetiri bajta (word) iz RAM-a u registar
-lbu $, N($)   - ucitavanje bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
-lhu $, N($)   - ucitavanje dva bajta (half-word) iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
-la $, L       - ucitavanje adrese label-a u registar
-li $, N       - ucitavanje broja N u registar
-lui $, N      - ucitavanje broja N u prvih 16 bita registra
-sb $, N($)    - spremanje bajta iz registra u RAM
-sh $, N($)    - spremanje dva bajta (half-word) iz registra u RAM
-sw $, N($)    - spremanje cetiri bajta (word) iz registra u RAM
-sbu $, N($)   - spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-shu $, N($)   - spremanje dva bajta (half-word) iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-mfhi $        - pomijeranje vrijednosti iz HI registra u registar opste namjene (move from HI)
-mflo $        - pomijeranje vrijednosti iz LO registra u registar opste namjene (move from LO)
-move $, $     - pseudo instrukcija, premijesta vrijednost drugog registra u prvi
+lb $, N($)        - load byte, ucitavanje bajta iz RAM-a u registar
+lh $, N($)        - load half-word, ucitavanje dva bajta (half-word) iz RAM-a u registar
+lw $, N($)        - load word, ucitavanje cetiri bajta (word) iz RAM-a u registar
+lbu $, N($)       - load byte unsigned, ucitavanje bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+lhu $, N($)       - load half-word unsigned, ucitavanje dva bajta iz RAM-a u registar, ostatak registra se puni nulama, bez obzira na predznak
+la $, L           - load address, pseudo instrukcija, ucitavanje adrese label-a u registar
+li $, N           - load immediate, ucitavanje broja N u registar
+lui $, N          - load upper immediate, ucitavanje broja N u prvih 16 bita registra
+sb $, N($)        - store byte, spremanje bajta iz registra u RAM
+sh $, N($)        - store half-word, spremanje dva bajta (half-word) iz registra u RAM
+sw $, N($)        - store word, spremanje cetiri bajta (word) iz registra u RAM
+sbu $, N($)       - store byte unsigned, spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+shu $, N($)       - store half-word unsigned, spremanje dva bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
+mfhi $            - move from HI, pomijeranje vrijednosti iz HI registra u registar opste namjene
+mflo $            - move from LO, pomijeranje vrijednosti iz LO registra u registar opste namjene
+move $, $         - pseudo instrukcija, premijesta vrijednost drugog registra u prvi
+
+
+Instrukcije pomijeranja podataka izmedju procesora i koprocesora:
+mtc1 $gp, $fp     - move to coprocessor 1, kopiranje vrijednosti iz $gp u $fp
+mfc1 $gp, $fp     - move from coprocessor 1, kopiranje vrijednosti iz $fp u $gp
+lwc1 $fp, N($gp)  - load word coprocessor 1, ucitavanje vrijednosti sa adrese koja se nalazi u $gp pomjerenu za N byte-a u $fp
+swc1 $fp, N($gp)  - store word coprocessor 1, spremanje vrijednosti iz $fp na adresu koja se nalazi u $gp pomjerenu za N byte-a
+
+
+Floating point instrukcije (podrazumijevamo da su $ fp registri ($ = $fp)):
+(za nesto detaljnije objasnjenje instrukcija pogledati predavanje 6 (p6.txt))
+cvt.X.Y $, $      - convert, pretvaranje vrijednost iz drugog registra tipa Y u tip X i smijestanje rezultata u prvi registar
+                    X i Y mogu biti: w (cijeli broj - word), s (single precision) i d (double precision)
+c.VP.X $, $       - compare, poredjenje vrijednosti dva registra logickom operacijom VP, pri cemu su operandi tipa X, 
+                    rezultat se smijesta kao stanje bita CC u FCSP 
+                    VP moze biti: eq (==), le (<=) i lt (<)
+                    X moze biti: s (single precision) i d (double precision)
+bc1t L            - branch coprocessor 1 true, skok na label L ukoliko je bit CC registra FCSP jedinica
+bc1f L            - branch coprocessor 1 false, skok na label L ukoliko je bit CC registra FCSP nula 
+
+add.s $, $, $     - add, sabiranje vrijednosti iz drugog i treceg registra, rezultat se sprema u prvi registar
+sub.s $, $, $     - subtract, oduzimanje vrijednosti iz drugog i treceg registra, rezultat se sprema u prvi registar
+mul.s $, $, $     - multiply, mnozenje vrijednosti iz drugog i treceg registra, rezultat se sprema u prvi registar
+div.s $, $, $     - divide, dijeljenje vrijednosti iz drugog i treceg registra, rezultat se sprema u prvi registar
+abs.s $, $        - absolute, apsolutna vrijednost iz drugog registra se smijesta u prvi registar
+neg.s $, $        - negative, negacija vrijednosti iz drugog registra se smijesta u prvi registar
+mov.s $, $        - move, pomijeranje (kopiranje) vrijednosti iz drugog registra u prvi registar
+l.s $, L          - load, ucitavanje vrijednosti sa lokacije koju predstavlja label L u registar
+s.s $, L          - store, spremanje vrijednosti iz registra na lokaciju koju predstavlja label L
+
 
 Direktive:
-.section T  - deklaracija sekcije T
+.section T        - deklaracija sekcije T
   ELF sekcije:
-  .text     - sekcija za instrukcije
-  .data     - sekcija za inicijalizirane globalne varijable
-  .bss      - sekcija za neinicijalizirane globalne varijable (block starting symbol)
-  .rodata   - sekcija za konstante (read-only data)
-.globl L    - deklaracija simbola L globalnim (moze se koristiti u drugim fajlovima)
-.global L   - isto sto i .globl
-.byte N     - rezervisanje jednom bajta memorije sa vrijednosti N
-.half N     - rezervisanje dva bajta memorije sa vrijednosti N
-.word N     - rezervisanje cetiri bajta memorije sa vrijednosti N
-.ascii S    - pohrani string S u memoriju bez null karaktera
-.asciiz S   - pohrani string S u memoriju sa null karakterom
+  .text           - sekcija za instrukcije
+  .data           - sekcija za inicijalizirane globalne varijable
+  .bss            - sekcija za neinicijalizirane globalne varijable (block starting symbol)
+  .rodata         - sekcija za konstante (read-only data)
+.globl L          - deklaracija simbola L globalnim (moze se koristiti u drugim fajlovima)
+.global L         - isto sto i .globl
+.byte N           - rezervisanje jednom bajta memorije sa vrijednosti N
+.hword N           - rezervisanje dva bajta memorije sa vrijednosti N
+.half N           - isto sto i .hword (na nekim platformama ne radi)
+.word N           - rezervisanje cetiri bajta memorije sa vrijednosti N
+.ascii S          - pohrani string S u memoriju bez null karaktera
+.asciiz S         - pohrani string S u memoriju sa null karakterom
