@@ -106,7 +106,7 @@ Direktive:
 .globl L          - deklaracija simbola L globalnim (moze se koristiti u drugim fajlovima)
 .global L         - isto sto i .globl
 .byte N           - rezervisanje jednom bajta memorije sa vrijednosti N
-.hword N           - rezervisanje dva bajta memorije sa vrijednosti N
+.hword N          - rezervisanje dva bajta memorije sa vrijednosti N
 .half N           - isto sto i .hword (na nekim platformama ne radi)
 .word N           - rezervisanje cetiri bajta memorije sa vrijednosti N
 .ascii S          - pohrani string S u memoriju bez null karaktera
