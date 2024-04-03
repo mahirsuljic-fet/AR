@@ -8,7 +8,7 @@ $gp - gp registar (registar opste namjene; $t0, $s1, ...)
 $fp - fp registar (floating point registar; $f0, $f1, ...)
 
 Format objasnjenja:
-instrukcija parametri   - puni naziv instrukcije, objasnjenje
+instrukcija parametri - puni naziv instrukcije, objasnjenje
 
 
 Aritmeticko-logicke instrukcije:
