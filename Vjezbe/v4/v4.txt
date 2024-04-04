@@ -1,0 +1,10 @@
+Memory order
+
+prolog - prosirivanje stack frame-a
+epilog - vracanje memorije sa stacka
+
+jalr je neophodna instrukcija za rad sa function pointerima
+
+zauzimati vise stacka nego sto nam treba i pisati na vrh stack frame-a
+
+obratiti paznju na memory alignment pri koristenju stack-a
