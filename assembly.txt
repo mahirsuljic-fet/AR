@@ -46,6 +46,7 @@ bne $, $, L       - branch not equal (to), ako vrijednosti u registrima nisu ist
 j L               - jump (bezuslovni skok), nastavi izvrsavati od L
 jr $              - jump register, nastavi izvrsavati od adrese pohranjene u registru
 jal L             - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
+jalr $            - jump and link register, isto kao i jump and link, ali umjesto label-a skace na adresu koja se nalazi u registru
 
 
 Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
