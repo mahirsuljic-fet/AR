@@ -1,0 +1,33 @@
+MAKE:
+
+target: dependencies
+  recept
+
+
+phony target
+
+
+zig c++ -target mipsel-linux-musl (-static) -o foo p2.cpp foo.s
+
+
+Funkcija napisana u c++ se ne kompajlira u assembler na isti nacin kao i c funkcija niti ima isto ime kao orginalna funkcija.
+Zbog toga, ukoliko u c++ zelimo koristiti neke funkcije koje su napisane u c ili assembleru, potrebno je to uraditi na sljedeci nacin:
+
+extern "C" potpis_funkcije
+
+npr.:
+extern "C" void foo();
+ili ako zelimo vise funkcija
+extern "C" {
+  void foo();
+  int bar();
+  ...
+}
+
+
+Strukturu prosljedjujemo u funkciju tako sto clanove strukture smijestamo u registre $a0-$a3, pri cemu treba voditi obzira o padding-u.
+
+Ako struktura ne moze stati u $a0-$a3 ostatak ide na stack.
+To se radi na taj nacin da se na stacku rezervise 16B (kao 4 registra) koja su prazna, a argumenti koji ne mogu stati u registre idu iznad tih 16B.
+
+Stack mora uvijek bit align-iran na 8.
