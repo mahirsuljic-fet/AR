@@ -64,5 +64,4 @@ Grananje se izvrsava sa instrukcijama bc1t (branch coprocessor 1 true) i bc1f (b
 bc1t LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog poredjenja true (tacno), tj. ako je stanje bita CC jedinica
 bc1f LABEL  - vrsi skok na LABEL ukoliko je rezultat zadnjeg izvrsenog poredjenja false (netacno), tj. ako je stanje bita CC nula
 
-Ako su parametri funkcije floating point argumenti su u $f12 i $f14, ako je jedan cjelobrojni onda je on u $a2.
 Ako vracamo int vrijednost se sprema u $v0, ako vracamo floating point vrijednost ona je u $f0.
