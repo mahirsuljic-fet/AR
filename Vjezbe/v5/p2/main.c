@@ -1,8 +1,8 @@
 // Napisati funkciju foo koja uzima dva short-a i vraca uint32_t
 // funkcija treba da provjeri da li je drugi argument jednak nuli
 // te ukoliko jeste da nazad vrati sve jedinice (32 jedinice)
-// u suprotnom u najjacin 16 bita povratne vrijednosti treba da bude rezultat
-// dijeljenja dva argumenta, a u najslabijih 16 bita rezultat ostatka dijeljenja
+// u suprotnom u najjacih 16 bita povratne vrijednosti treba da bude rezultat
+// dijeljenja dva argumenta, a u najslabijih 16 bita rezultat ostatak dijeljenja
 
 #include <stdint.h>
 #include <stdio.h>

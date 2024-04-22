@@ -7,8 +7,8 @@ foo:
   jr $ra
 dijeli:
   div $a0, $a1
-  mfhi $v0
+  mflo $v0
   sll $v0, 16
-  mflo $t0
+  mfhi $t0
   or $v0, $v0, $t0
   jr $ra
