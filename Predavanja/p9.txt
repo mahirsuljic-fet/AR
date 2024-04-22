@@ -1,0 +1,33 @@
+Pri izvrsavanju logicke instrukcije unutar ALU, npr. AND, nije bitno kakvi su kontrolni signali na aritmetickim i shift dijelovima ALU.
+Zato jer se propusta samo rezultat jedne operacije na izlaz iz ALU.
+ALU prakticno odradi sve instrukcije na ulaznim podacima istovremeno, pa se na osnovu kontrolnih signala bira koji rezultat zelimo.
+
+Potreban je konacan period vremena da bi CPU izvrsio neku instrukciju 
+jer je potreban konacan period vremena da tranzistori predju iz jedno stanja u neko drugo.
+Zbog toga je potrebno sacekati da se unutar CPU izvrsi neka instrukcija prije nego sto se pocne izvrsavati neka druga instrukcija.
+Instrukcija zavrsava sa izvrsavanjem kada na izlazu bude neki validan signal (ne desavaju se nikakve promjene unutar CPU-a).
+Clock signal sluzi kako bi se to osiguralo.
+CPU ceka opadajucu ivicu clock signala da pocne izvrsavat neku instrukciju.
+Potrebno je da clock signal bude dovoljno dug (izmedju dvije padajuce ivice bude dovoljno vremena) da se unutar CPU-a 
+zavrsi izvrsavanje trenutne instrukcije prije pocetka izvrsavanja sljedece.
+Zbog dodatne sigurnosti, nakon izvrsavanja instrukcije ima kratak period gdje CPU ne radi nista, 
+nego ceka da bi osigurao da se prethodna instrukcija u potpunosti izvrsila. Ceka za svaki slucaj. (ALU kasnjenje)
+
+Za R tip instrukcija RegWrite je uvijek postavljen na 1 jer R tip instrukcija uvijek pise u registar na padajucoj ivici clock signala.
+Za R tip instrukcija ALUCtrl signal postavlja se na osnovu funct polja instrukcije.
+Za I tip instrukcija ALUCtrl signal postavlja se na osnovu opcode polja instrukcije.
+
+Dio koji nije nuzno vezan da gradivo i predmet:
+
+OVERCLOCKING
+Veci naponski nivoi za 1 rezultuju kracim periodima izvrsenja instrukcija. Kao posljediva veceg napona procesor se zagrijava.
+Moze se smanjiti i frekvencija clock signala, time se smanji margina sigurnosti, ali pri tome moze doci doci do pogresnih rezultata instrukcija.
+Rezultat toga je brickovani racunar.
+
+INSTRUCTION MEMORY
+Ovo je dio CPU memorije koji sadrzi instrukcije. U stvari, ovo je L1i cache CPU-a. L1 cache je mnogo mnogo mnogo brzi od memorije.
+Buduci da je pristup memoriji spor, procesor ucita instrukcije iz memorije kroz L3 i L2 u L1i (L1 instrucion) cache.
+Ovo se radi kako bi se smanjio period gdje procesor ceka da dobije podatke iz memorije.
+Kada su instrukcije u L1i cache-u, procesor ima veoma brz pristup njima.
+Buduci da pri izvrsenju instrukcije najvjerovatnije ce se sljdedeca instrukcija nalaziti negdje blizu u memoriji,
+procesor ne ucitaje samo jednu instrukciju u L1i cache nego vise njih.
