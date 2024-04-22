@@ -1,0 +1,33 @@
+Implementirat cemo procesor koji podrzaje:
+R tip instrukcija osim shift instrukcija
+I tip instrukcija koje lice na R tip (npr. addi, ori, ...)
+j instrukciju od J tipa instrukcija
+
+Za izvrsenje bilo koje instrukcije treba 5 koraka (faza).
+Buduci da se $pc uvijek poveca za 4 to se moze cak uraditi u prvoj fazi.
+Jedine instrukcije koje imaju pristup memoriji (faza 4) su load i store instrukcije.
+
+U kombinatornim kolima izlaz zavisi samo od ulaza
+U sekvencijalim kolima izlaz zavisi od ulaza i od internog stanja kola (njegove memorije)
+
+Q (izlaz sekvencijalnog kola) je stanje interne memorije.
+
+Crne strelice sa predavanja su datapath signali, ako ima vise bita (podataka) deblja je.
+Crvene strelice sa predavanja su kontrolni signali.
+Ako je strelica bez crtice predstavlja jedan bit, a ako ima crticu predstavlja vise bita.
+
+Flip flop moze pamtiti samo jedan bit.
+Registar se pravi od flip flopova.
+Registar koji moze pamtiti n bita (n-bitni registar) je pravi od n paralelno vezanih flip flopova (svi imaju isti clock, ali razlicite data signale).
+
+Registar fajl moze istovremeno citati registar RA na BusA, citati registar RB na BusB i pisati u registar RW sa BusW.
+Registri RA, RB i RW su registri sa rednim brojem koji je doveden kao 5 bita u registar fajl (pojedinacno).
+
+Svaki flip flop ima 1-bitni kontrolni signal WE (Write Enable) koji diktira da li ce se dozvoliti da se promijeni stanje memorije flip flopa.
+RegWrite je kontrolni signal koji diktira da li ce se podaci sa BusW pohraniti u registar RW.
+
+3 state buffer - ima simbol trokuta sa ulaznim, izlazim i kontrolnim signalom, propusta ulaz na izlaz samo ako je doveden enable kontrolni signal
+dekoder - uredjaj koji mapira neke ulazne signale na izlazne (npr. na osnovu 5 bitnog ulaza salje se enable signal na jedan od 32 izlaza)
+
+Citanje virjednosti iz registara se moze uvijek raditi, kazemo da je asinhrono.
+Pitanje vrijednosti u registar se vrsi na padacujoj ivici clock signala, kazemo da je sinhrono.
