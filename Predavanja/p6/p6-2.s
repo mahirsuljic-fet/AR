@@ -16,7 +16,7 @@ X moze biti w, s, d
 Y moze biti w, s, d
 
 li $t0, 4         # ucitaj 4 u $t0
-mtc1 $f0, $t0     # premjesti 4 iz $t0 u $f0
+mtc1 $t0, $f0     # premjesti 4 iz $t0 u $f0
 cvt.s.w $f0, $f0  # prebaci word iz $f0 u single precision float u $f0
 
 ########################################################################
