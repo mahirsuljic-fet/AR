@@ -61,8 +61,6 @@ lui $, N          - load upper immediate, ucitavanje broja N u prvih 16 bita reg
 sb $, N($)        - store byte, spremanje bajta iz registra u RAM
 sh $, N($)        - store half-word, spremanje dva bajta (half-word) iz registra u RAM
 sw $, N($)        - store word, spremanje cetiri bajta (word) iz registra u RAM
-sbu $, N($)       - store byte unsigned, spremanje bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
-shu $, N($)       - store half-word unsigned, spremanje dva bajta iz registra u RAM, ostatak dijela memorije se puni nulama, bez obzira na predznak
 mfhi $            - move from HI, pomijeranje vrijednosti iz HI registra u registar opste namjene
 mflo $            - move from LO, pomijeranje vrijednosti iz LO registra u registar opste namjene
 move $, $         - pseudo instrukcija, premijesta vrijednost drugog registra u prvi
