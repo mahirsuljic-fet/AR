@@ -22,10 +22,15 @@ mult $, $         - multiply, mnozenje sa predznakom (rezultat se smijesta u reg
 multu $, $        - multiply unsigned, mnozenje bez predznaka (rezultat se smijesta u registre HI (prva 32 bita, gornja) i LO (druga 32 bita, donja))
 div $, $          - divide, dijeljenje sa predznakom (rezultat se smijesta u registar LO, a ostatak u registar HI)
 divu $, $         - divide unsigned, dijeljenje bez predznaka (rezultat se smijesta u registar LO, a ostatak u registar HI)
+abs $, $          - pseudo instrukcija, u prvi registar smijesta apsolutnu vrijednost iz drugog registra
+neg $, $          - pseudo instrukcija, u prvi registar smijesta negativnu vrijednost iz drugog registra
 
 sll $, $, N       - shift left (logical), pomijeranje svih bita u lijevo za N mijesta
 srl $, $, N       - shift right (logical), pomijeranje svih bita u desno za N mijesta
 sra $, $, N       - shift right (arithmetic), pomijeranje svih bita u desno za N mijesta, pri cemu se prazna mjesta popunjavaju zavisno od predznaka
+sllv $, $, $      - shift left (logical) variable, isto kao i sll, ali broj pomijeranja se uzima iz registra
+srlv $, $, $      - shift right (logical) variable, isto kao i srl, ali broj pomijeranja se uzima iz registra
+srav $, $, $      - shift right (arithmetic) variable, isto kao i sra, ali broj pomijeranja se uzima iz registra
 
 and $, $, $       - and, operacija i na bitima registara
 andi $, $, N      - and immediate, operacija i na bitima registra i konstante
@@ -47,6 +52,17 @@ j L               - jump (bezuslovni skok), nastavi izvrsavati od L
 jr $              - jump register, nastavi izvrsavati od adrese pohranjene u registru
 jal L             - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
 jalr $            - jump and link register, isto kao i jump and link, ali umjesto label-a skace na adresu koja se nalazi u registru
+blt $, $, L       - pseudo instrukcija, branch less than, skok na L ako je vrijednost prvog manja od vrijednosti drugog registra 
+ble $, $, L       - pseudo instrukcija, branch less than or equal, skok na L ako je vrijednost prvog manja od ili jednaka vrijednosti drugog registra 
+bgt $, $, L       - pseudo instrukcija, branch greater than, skok na L ako je vrijednost prvoj registra veca od vrijednosti drugog
+bge $, $, L       - pseudo instrukcija, branch greater than or equal, skok na L ako je vrijednost prvoj registra veca od ili jednaka vrijednosti drugog
+bgez $, L         - pseudo instrukcija, branch greater than or equal zero, skok na L ako je vrijednost registra veca od ili jednaka nula
+bgezal $, L       - pseudo instrukcija, branch greater than or equal zero and link, skok na L i link ako je vrijednost registra veca ili jednaka nula
+bgtz $, L         - pseudo instrukcija, branch greater than zero, skok na L ako je vrijednost registra veca od nula
+blez $, L         - pseudo instrukcija, branch less than or equal zero, skok na L ako je vrijednost registra manja od ili jednaka nula
+bltz $, L         - pseudo instrukcija, branch less than zero, skok na L ako je vrijednost registra manja od nula
+bltzal $, L       - pseudo instrukcija, branch less than zero and link, skok na L i link ako je vrijednost registra manja od nula
+
 
 
 Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
@@ -93,6 +109,9 @@ neg.s $, $        - negative, negacija vrijednosti iz drugog registra se smijest
 mov.s $, $        - move, pomijeranje (kopiranje) vrijednosti iz drugog registra u prvi registar
 l.s $, L          - load, ucitavanje vrijednosti sa lokacije koju predstavlja label L u registar
 s.s $, L          - store, spremanje vrijednosti iz registra na lokaciju koju predstavlja label L
+
+
+syscall           - sistemski poziv
 
 
 Direktive:
