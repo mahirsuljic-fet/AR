@@ -28,7 +28,7 @@ sp    | 29    | stack pointer
 fp    | 30    | (stack) frame pointer
 ra    | 31    | povratna adresa
 
-PREZERVIRANI GP REGISTRI: s0-s7, ra, fp, sp, (i gp, ali ga svejedno nikad ne koristimo)
+PREZERVIRANI GP REGISTRI: s0-s7, ra, fp, sp
 
 Format objasnjenja gp registara:
 oznaka_registra | objasnjenje
