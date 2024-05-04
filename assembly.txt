@@ -93,12 +93,12 @@ blt $, $, L       - pseudo instrukcija, branch less than, skok na L ako je vrije
 ble $, $, L       - pseudo instrukcija, branch less than or equal, skok na L ako je vrijednost prvog manja od ili jednaka vrijednosti drugog registra 
 bgt $, $, L       - pseudo instrukcija, branch greater than, skok na L ako je vrijednost prvoj registra veca od vrijednosti drugog
 bge $, $, L       - pseudo instrukcija, branch greater than or equal, skok na L ako je vrijednost prvoj registra veca od ili jednaka vrijednosti drugog
-bgez $, L         - pseudo instrukcija, branch greater than or equal zero, skok na L ako je vrijednost registra veca od ili jednaka nula
-bgezal $, L       - pseudo instrukcija, branch greater than or equal zero and link, skok na L i link ako je vrijednost registra veca ili jednaka nula
-bgtz $, L         - pseudo instrukcija, branch greater than zero, skok na L ako je vrijednost registra veca od nula
-blez $, L         - pseudo instrukcija, branch less than or equal zero, skok na L ako je vrijednost registra manja od ili jednaka nula
-bltz $, L         - pseudo instrukcija, branch less than zero, skok na L ako je vrijednost registra manja od nula
-bltzal $, L       - pseudo instrukcija, branch less than zero and link, skok na L i link ako je vrijednost registra manja od nula
+bgez $, L         - branch greater than or equal zero, skok na L ako je vrijednost registra veca od ili jednaka nula
+bgezal $, L       - branch greater than or equal zero and link, skok na L i link ako je vrijednost registra veca ili jednaka nula
+bgtz $, L         - branch greater than zero, skok na L ako je vrijednost registra veca od nula
+blez $, L         - branch less than or equal zero, skok na L ako je vrijednost registra manja od ili jednaka nula
+bltz $, L         - branch less than zero, skok na L ako je vrijednost registra manja od nula
+bltzal $, L       - branch less than zero and link, skok na L i link ako je vrijednost registra manja od nula
 
 syscall           - sistemski poziv
 
