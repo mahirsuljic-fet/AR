@@ -83,12 +83,12 @@ sltiu $, $, N     - set less than immediate unsigned, poredjenje "manje" izmedju
 
 
 Instrukcije grananja (kontrole toka programa):
-beq $, $, L       - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
-bne $, $, L       - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
 j L               - jump (bezuslovni skok), nastavi izvrsavati od L
 jr $              - jump register, nastavi izvrsavati od adrese pohranjene u registru
 jal L             - jump and link, isto kao i jump, ali sprema lokaciju sljedece instrukcije u registar $ra
 jalr $            - jump and link register, isto kao i jump and link, ali umjesto label-a skace na adresu koja se nalazi u registru
+beq $, $, L       - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
+bne $, $, L       - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
 blt $, $, L       - pseudo instrukcija, branch less than, skok na L ako je vrijednost prvog manja od vrijednosti drugog registra 
 ble $, $, L       - pseudo instrukcija, branch less than or equal, skok na L ako je vrijednost prvog manja od ili jednaka vrijednosti drugog registra 
 bgt $, $, L       - pseudo instrukcija, branch greater than, skok na L ako je vrijednost prvoj registra veca od vrijednosti drugog
@@ -147,6 +147,36 @@ neg.s $, $        - negative, negacija vrijednosti iz drugog registra se smijest
 mov.s $, $        - move, pomijeranje (kopiranje) vrijednosti iz drugog registra u prvi registar
 l.s $, L          - load, ucitavanje vrijednosti sa lokacije koju predstavlja label L u registar
 s.s $, L          - store, spremanje vrijednosti iz registra na lokaciju koju predstavlja label L
+
+
+FORMATI INSTRUKCIJA
+
+U polja gdje su navedeni registri (rs, rt i rd) se upisuju redni brojevi registara.
+Ukoliko instrukcija ne koristi neki registar (npr. jr ne koristi rt i rd), umjesto rednog broja registra pise se 0.
+
+R FORMAT
+op(6b) | rs(5b) | rt(5b) | rd(5b) | shamt(5b) | func(6b)
+
+op    - opcode (za R format uvijek 0)
+rs    - source register 
+rt    - target register
+rd    - destination register
+shamt - shift amount (koristi se samo za shift instrukcije, kod ostalih instrukcija je 0)
+func  - function code (odredjuje koja je instrukcija u pitanju)
+
+I FORMAT
+op(6b) | rs(5b) | rt(5b) | imm(16b)
+
+op  - opcode (odredjuje koja je instrukcija u pitanju)
+rs  - source register
+rt  - target register
+imm - immediate, numericka konstanta
+
+J FORMAT
+op(6b) | addr(26b)
+
+op   - opcode (odredjuje koja je instrukcija u pitanju)
+addr - address (destinacijska adresa)
 
 
 DIREKTIVE
