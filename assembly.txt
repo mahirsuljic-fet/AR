@@ -1,4 +1,4 @@
-Legenda:
+LEGENDA
 $ - registar
 N - broj (konstanta)
 L - label
@@ -7,9 +7,46 @@ S - string (tekst pod navodnicima)
 $gp - gp registar (registar opste namjene; $t0, $s1, ...)
 $fp - fp registar (floating point registar; $f0, $f1, ...)
 
-Format objasnjenja:
-instrukcija parametri - puni naziv instrukcije, objasnjenje
 
+REGISTRI
+
+Format objasnjenja gp registara:
+naziv_registra | redni_broj | objasnjenje
+(ispred naziva registara se podrazumijeva $)
+
+GP REGISTRI (opste namjene):
+zero  | 0     | konstanta 0
+at    | 1     | rezerviran za asembler
+v0-v1 | 2-3   | povratne vrijednosti funkcija   * buduci da po c standardu vracamo samo jednu vrijednost koristimo samo v0
+a0-a3 | 4-7   | argumenti funkcija
+t0-t7 | 8-15  | privremeni registri
+s0-s7 | 16-23 | sacuvane vrijednosti
+t8-t9 | 24-25 | privremeni registri
+k0-k1 | 26-27 | kernel registri (rezervirano za OS)
+gp    | 28    | global pointer
+sp    | 29    | stack pointer
+fp    | 30    | (stack) frame pointer
+ra    | 31    | povratna adresa
+
+PREZERVIRANI GP REGISTRI: s0-s7, ra, fp, sp, (i gp, ali ga svejedno nikad ne koristimo)
+
+Format objasnjenja gp registara:
+oznaka_registra | objasnjenje
+(ispred naziva registara se podrazumijeva $)
+(registri se gledaju u parovima, tj. f0 podrazumijeva f1, f2 podrazumijeva f3, itd.)
+
+FP REGISTRI (floating point):
+f0 -f2  | povratne vrijednosti      * buduci da po c standardu vracamo samo jednu vrijednost koristimo samo f0
+f4 -f10 | privremeni registri    
+f12-f14 | argumenti funkcija        * samo ako je prvi parametar funkcije float i ima do dva float parametra
+f16-f18 | privremeni registri    
+f20-f30 | prezervirani registri  
+
+
+INSTRUKCIJE
+
+Format objasnjenja instrukcija:
+instrukcija parametri - puni naziv instrukcije, objasnjenje
 
 Aritmeticko-logicke instrukcije:
 sub $, $, $       - subtract, oduzimanje sa provjerom overflow-a
@@ -45,7 +82,7 @@ sltu $, $, $      - set less than unsigned, poredjenje "manje" izmedju dva regis
 sltiu $, $, N     - set less than immediate unsigned, poredjenje "manje" izmedju registra i konstante, pri cemu se ne gleda bit predznaka
 
 
-Instrukcije grananja:
+Instrukcije grananja (kontrole toka programa):
 beq $, $, L       - branch equal (to), ako su vrijednosti u registrima iste nastavi izvrsavati od L 
 bne $, $, L       - branch not equal (to), ako vrijednosti u registrima nisu iste nastavi izvrsavati od L 
 j L               - jump (bezuslovni skok), nastavi izvrsavati od L
@@ -63,6 +100,7 @@ blez $, L         - pseudo instrukcija, branch less than or equal zero, skok na 
 bltz $, L         - pseudo instrukcija, branch less than zero, skok na L ako je vrijednost registra manja od nula
 bltzal $, L       - pseudo instrukcija, branch less than zero and link, skok na L i link ako je vrijednost registra manja od nula
 
+syscall           - sistemski poziv
 
 
 Instrukcije citanja, spremanja (pohranjivanja) i pomijeranja:
@@ -111,10 +149,8 @@ l.s $, L          - load, ucitavanje vrijednosti sa lokacije koju predstavlja la
 s.s $, L          - store, spremanje vrijednosti iz registra na lokaciju koju predstavlja label L
 
 
-syscall           - sistemski poziv
+DIREKTIVE
 
-
-Direktive:
 .section T        - deklaracija sekcije T
   ELF sekcije:
   .text           - sekcija za instrukcije
