@@ -145,8 +145,8 @@ div.s $, $, $     - divide, dijeljenje vrijednosti iz drugog i treceg registra, 
 abs.s $, $        - absolute, apsolutna vrijednost iz drugog registra se smijesta u prvi registar
 neg.s $, $        - negative, negacija vrijednosti iz drugog registra se smijesta u prvi registar
 mov.s $, $        - move, pomijeranje (kopiranje) vrijednosti iz drugog registra u prvi registar
-l.s $, L          - load, ucitavanje vrijednosti sa lokacije koju predstavlja label L u registar
-s.s $, L          - store, spremanje vrijednosti iz registra na lokaciju koju predstavlja label L
+l.s $fp, N($gp)       - load, ucitavanje vrijednosti iz memorije sa lokacije spremljene u $gp + N u registar $fp
+s.s $fp, N($gp)       - store, spremanje vrijednosti na memorijsku lokaciju spremljenu u $gp + N iz registra $fp
 
 
 FORMATI INSTRUKCIJA
