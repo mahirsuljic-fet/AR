@@ -46,6 +46,26 @@ end
 -- BASIC --
 ls.add_snippets("asm", {
 	s({
+		trig = "st",
+		name = "st",
+	}, {
+		t({
+			".section .rodata",
+			"",
+			".section .data",
+			"",
+			".section .bss",
+			"",
+			".section .text",
+			"",
+			".global main",
+			"main:",
+			"  ",
+		}),
+		i(0),
+		t({ "", "  addiu $v0, $0, 0", "  jr $ra" }),
+	}),
+	s({
 		trig = "start",
 		name = "start",
 	}, {
@@ -64,6 +84,18 @@ ls.add_snippets("asm", {
 		}),
 		i(0),
 		t({ "", "  addiu $v0, $0, 0", "  jr $ra" }),
+	}),
+	s({
+		trig = "func",
+		name = "global function with return",
+	}, {
+		t(".globl "),
+		f(fn, { 1 }),
+		t({ "", "" }),
+		i(1),
+		t({ ":", "  " }),
+		i(0),
+		t({ "", "  jr $ra" }),
 	}),
 	s({
 		trig = "mmain",
@@ -231,7 +263,7 @@ ls.add_snippets("asm", {
 		trig = "return",
 		name = "return",
 	}, {
-		t({ "jr $ra", "" }),
+		t({ "", "jr $ra" }),
 	}),
 	s({
 		trig = "stext",
