@@ -1324,17 +1324,17 @@ ls.add_snippets("asm", {
 		i(0, "FP"),
 	}),
 	s({
-		trig = "bc0t",
-		name = "branch coprocessor 0 true",
+		trig = "bc1t",
+		name = "branch coprocessor 1 true",
 	}, {
-		t("bc0t "),
+		t("bc1t "),
 		i(0, "label"),
 	}),
 	s({
-		trig = "bc0f",
-		name = "branch coprocessor 0 false",
+		trig = "bc1f",
+		name = "branch coprocessor 1 false",
 	}, {
-		t("bc0f "),
+		t("bc1f "),
 		i(0, "label"),
 	}),
 
