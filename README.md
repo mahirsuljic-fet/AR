@@ -1,8 +1,8 @@
 <h1 style="text-align: center;">Arhitektura računara (AR)</h1>
 
 ## [Literatura](./Literatura)
-- Arhitektura_racunara.pdf - Knjiga od fakulteta za dio semestra vezan za assembler 
-- Arhitektura_racunara___CPU_Implementacija.pdf ([Amar Kešetović](https://github.com/kesetovic)) - Skripta od kolege za dio semestra vezan za jednociklusnu implementaciju procesora
+- [Arhitektura_racunara.pdf](./Literatura/Arhitektura_racunara.pdf) - Knjiga od fakulteta za dio semestra vezan za assembler 
+- [Arhitektura_racunara___CPU_Implementacija.pdf](./Literatura/Arhitektura_racunara___CPU_Implementacija.pdf) ([Amar Kešetović](https://github.com/kesetovic)) - Skripta od kolege za dio semestra vezan za jednociklusnu implementaciju procesora
 
 ## [Predavanja](./Predavanja)
 Bilješke sa predavanja iz dijela semestra vezan za assembler.
