@@ -1,4 +1,5 @@
-<h1 style="text-align: center;">Arhitektura računara (AR)</h1>
+Arhitektura računara (AR)
+=========================
 
 ## [Literatura](./Literatura)
 - [Arhitektura_racunara.pdf](./Literatura/Arhitektura_racunara.pdf) - Knjiga od fakulteta za dio semestra vezan za assembler 
