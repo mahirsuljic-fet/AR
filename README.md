@@ -2,6 +2,7 @@
 
 ## Literatura
 - Arhitektura_racunara.pdf - Knjiga od fakulteta za dio semestra vezan za assembler 
+- Arhitektura_racunara___CPU_Implementacija.pdf (Amar Kešetović) - Skripta od kolege za dio semestra vezan za jednociklusnu implementaciju procesora
 
 ## Predavanja
 Bilješke sa predavanja iz dijela semestra vezan za assembler.
