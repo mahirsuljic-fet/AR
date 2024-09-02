@@ -23,7 +23,7 @@ Urađene zadaće iz predmeta. Neki dijelovi nedostaju, iskreno mrsko mi je bilo 
 Par primjera samostalno izmišljenih i urađenih zadataka u assembleru.
 
 ## Ostalo
-- <assembly.pdf> - cheat sheet osnovnih instrukcija i direktiva MIPS32 assemblera (ne uključujući floating point)
-- <assembly.txt> - instrukcije, direktive i registri kratko objašnjeni (lično sam pisao, uključuju floating point, sve instrukcije i direktive koje trebaju a i koje ne trebaju za predmet)
-- <mips32.pdf> - MIPS32 instrucion set
-- <mips_snippets.lua> - snippeti za MIPS32 assembler pravljeni za LuaSnip plugin za Neovim, fajl je potrebno staviti u ~/.local/share/nvim/lazy/LuaSnip/plugin/
+- [assembly.pdf](./assembly.pdf) - cheat sheet osnovnih instrukcija i direktiva MIPS32 assemblera (ne uključujući floating point)
+- [assembly.txt](./assembly.txt) - instrukcije, direktive i registri kratko objašnjeni (lično sam pisao, uključuju floating point, sve instrukcije i direktive koje trebaju a i koje ne trebaju za predmet)
+- [mips32.pdf](./mips32.pdf) - MIPS32 instrucion set
+- [mips_snippets.lua](./mips_snippets.lua) - snippeti za MIPS32 assembler pravljeni za LuaSnip plugin za Neovim, fajl je potrebno staviti u ~/.local/share/nvim/lazy/LuaSnip/plugin/
