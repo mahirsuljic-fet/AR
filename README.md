@@ -11,6 +11,9 @@ Bilješke sa predavanja iz dijela semestra vezan za assembler.
 ## [Prezentacije](./Prezentacije)
 Profesorove prezentacije iz predmeta.
 
+## YouTube
+- [**How do CPUs Work? The Engineering that Runs the Digital World**](https://www.youtube.com/watch?v=16zrEPOsIcI)
+
 ## [Procesori](./Procesori)
 Razne implementacije komponenti procesora (adderi, registri i slično) i cijelog procesora (jednociklusna i pipeline implementacija) u programu Logisim. Šeme su postavljene sa namjenom da se koriste da bi se bolje razumio rad procesora, a ne da se kopiraju te predaju kao zadaća.
 
